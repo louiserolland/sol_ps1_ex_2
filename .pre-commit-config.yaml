@@ -1,0 +1,34 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.1.0       # release tag, latest stable version (no 'v' prefix)
+    hooks:
+      - id: flake8 #ID for falke8
+
+  - repo: https://github.com/pre-commit/mirrors-mypy #URL to the repo of the mypy pre-commit hook
+    rev: v1.11.1     # Latest stable release of mypy
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-seaborn, polars, pandas-stubs, matplotlib]
+        args: ["--ignore-missing-imports", "--strict"]
+
+
+# flake 8 => checks for PEP8 style and syntax errors
+# mypy => checks for type errors
+# end-of-file-fixer => ensures files end with a newline
+# check-yaml => checks yaml files for syntax errors
+# trailing-whitespace => removes any trailing whitespace
+# check-added-large-files => prevents adding large files to the repo
+
+#additional_dependencies are needed for mypy to recognize the types used in the code
+#args for mypy are set to ignore missing imports and enforce strict type checking
