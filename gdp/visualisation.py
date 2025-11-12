@@ -1,9 +1,21 @@
+import pandas as pd
 import seaborn as sns
+from matplotlib.axes import Axes
 
 
-def plot_gdp(df):
+def plot_gdp(df: "pd.DataFrame") -> Axes:
+
     """
-    This function takes in a dataframe and plots the GDP of the countries in the dataframe.
-    """
+    Plot GDP by country over time.
 
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Must contain columns: 'Year', 'GDP', 'Country Name'.
+
+    Returnsg
+    -------
+    Axes
+        The Matplotlib Axes with the line plot.
+    """
     return sns.lineplot(data=df, x="Year", y="GDP", hue="Country Name")
